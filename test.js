@@ -11,6 +11,22 @@ export const options = {
     http_req_duration: ['p(90)<500'], // 95 percent of response times must be below 500ms
   },
 
+  scenarios: {
+    example_scenario: { 
+      // Executor type to use https://grafana.com/docs/k6/latest/using-k6/scenarios/#scenario-executors
+      executor: 'shared-iterations',
+      // common scenario configuration
+      startTime: '10s',
+      gracefulStop: '5s',
+      env: { EXAMPLE_VAR: 'testing' },
+      tags: { example_tag: 'testing' },
+      // executor-specific configuration
+      vus: 10,
+      iterations: 200,
+      maxDuration: '10s',
+    }
+  }
+
   // The following section contains configuration options for execution of this
   // test script in Grafana Cloud.
   //
