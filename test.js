@@ -21,9 +21,9 @@ export const options = {
       env: { EXAMPLE_VAR: 'testing' },
       tags: { example_tag: 'testing' },
       // executor-specific configuration
-      vus: 10,
+      vus: 60,
       iterations: 200,
-      maxDuration: '10s',
+      maxDuration: '1m',
     }
   },
 
