@@ -2,9 +2,12 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
+// Use ngrok URL if available, otherwise fallback to localhost
+const BASE_URL = __ENV.NGROK_URL || 'http://localhost:3055';
+
 export const options = {
   stages: [
-    { duration: '30s', target: 20 },  // Ramp-up to 20 users
+    { duration: '30s', target: 20 },  // Ramp-up to 20 users 
     { duration: '1m', target: 50 },   // Stay at 50 users
     { duration: '30s', target: 0 },   // Ramp-down
   ],
@@ -16,7 +19,7 @@ export const options = {
 
 export default function () {
   // Test GET endpoint
-  const getRes = http.get('http://localhost:3055/api/hello');
+  const getRes = http.get(`${BASE_URL}/api/hello`);
   check(getRes, {
     'GET status is 200': (r) => r.status === 200,
     'GET has message': (r) => JSON.parse(r.body).message.includes('K6'),
@@ -24,7 +27,7 @@ export default function () {
 
   // Test POST endpoint
   const postRes = http.post(
-    'http://localhost:3055/api/users',
+    `${BASE_URL}/api/users`,
     JSON.stringify({ name: 'K6 User' }),
     { headers: { 'Content-Type': 'application/json' } }
   );
