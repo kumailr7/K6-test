@@ -12,7 +12,7 @@ export const options = {
     { duration: '30s', target: 0 },   // Ramp-down
   ],
   thresholds: {
-    //  SLA for error rate and response time
+    // SLA for error rate and response time
     // SLO for error rate and response time
     // SLI for error rate and response time
     http_req_failed: ['rate<0.01'],   // Less than 1% errors
