@@ -1,24 +1,23 @@
-name: k6 Cloud Load Test
-
+name: k6 Load Test
+ 
 on:
   push:
     branches:
-      - development
+      - '**' # Here we can sepcify the branch name for granularity
+ 
 jobs:
-  run-cloud-test:
+  run-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+ 
       - name: Setup K6
         uses: grafana/setup-k6-action@v1
       - name: Run local k6 test
         uses: grafana/run-k6-action@v1
         env:
-          NGROK_URL: ${{ secrets.NGROK_URL }} 
-          K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
-          K6_CLOUD_PROJECT_ID: ${{ secrets.K6_CLOUD_PROJECT_ID }}
+          NGROK_URL: ${{ secrets.NGROK_URL }}
         with:
           path: test-api.js
-          cloud-run-locally: false
+          args: --env NGROK_URL=${{ secrets.NGROK_URL }}
