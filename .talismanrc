@@ -1,0 +1,7 @@
+fileignoreconfig:
+- filename: sla-report.json
+  checksum: 80e8f3968e8c153e0185d7a391416f4f9d343fe0dded14593cb80d5418724e67
+- filename: K6-report.html
+  checksum: 0424d71aaddd6d43c43e279209652e1e65573b7e4d617de43c19d487133de9ed
+version: "1.0"
+

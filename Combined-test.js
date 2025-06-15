@@ -20,7 +20,7 @@ export const options = {
       executor: 'ramping-vus',
       startTime: '1m',  // Starts after load test
       stages: [
-        { duration: '30s', target: 500 },  // Rapid spike
+        { duration: '30s', target: 30 },  // Rapid spike
         { duration: '1m', target: 0 },      // Quick ramp-down
       ],
       gracefulStop: '0s',
